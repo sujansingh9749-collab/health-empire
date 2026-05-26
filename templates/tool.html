@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PureLife Health AI | Premium BMI Calculator & Health Tracker</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<meta name="description" content="Smart BMI & Health Calculator with AI-powered BMI, calorie tracking, BMR and wellness insights.">
+<meta name="keywords" content="BMI calculator, calorie calculator, BMR calculator, health calculator, wellness tracker">
+<meta name="robots" content="index,follow">
+<meta name="author" content="PureLife Health AI">
+<meta property="og:title" content="PureLife Health AI">
+<meta property="og:description" content="Track BMI, calories and wellness instantly with AI-powered insights.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://yourdomain.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<img src="{{ url_for('static', filename='images/health.png') }}" alt="BMI Health Calculator illustration">
+
+<nav class="navbar">
+    <a href="/" class="nav-logo" id="navLogoText">PureLife Health AI</a>
+    <ul class="nav-links">
+        <li><a href="/" style="color: #2563eb;" id="navHomeLink">Home</a></li>
+        <li><a href="/blog" id="navBlogLink">Blog</a></li>
+        <li>
+            <select id="lang-switcher" class="control-element" onchange="changeLanguage(this.value)">
+                <option value="en">🇺🇸 English</option>
+                <option value="bn">🇧🇩 বাংলা</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="ar">🇦🇪 العربية</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+                <option value="ru">🇷🇺 Русский</option>
+            </select>
+        </li>
+        <li><button id="theme-toggle" class="control-element" onclick="toggleDarkMode()">🌙 Dark</button></li>
+    </ul>
+</nav>
+
+<div class="main-container">
+    <div class="left-panel">
+        <div>
+            <div class="hero-banner">
+                <h1 id="heroTitle">Smart BMI & Health Calculator</h1>
+                <p id="heroSubtitle">Track your BMI, calories and wellness instantly with AI insights.</p>
+            </div>
+
+            <div class="wrapper">
+                <div class="brand-name" id="brandNameText">PureLife Health AI</div>
+
+                <div class="gender-container">
+                    <div class="gender-box active" id="mBtn" onclick="setGender('male')">👨 Male</div>
+                    <div class="gender-box" id="fBtn" onclick="setGender('female')">👩 Female</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="label-row" id="lblAge">Your Age (Years)</label>
+                    <input type="number" id="age" value="25" min="1" max="120" oninput="calculate()">
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <label id="lblWeight">Weight</label>
+                        <div class="unit-switch">
+                            <button id="kgBtn" class="active" onclick="setWUnit('kg')">KG</button>
+                            <button id="lbsBtn" onclick="setWUnit('lbs')">LBS</button>
+                        </div>
+                    </div>
+                    <input type="number" id="weight" value="70" min="10" max="300" oninput="calculate()">
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <label id="lblHeight">Height</label>
+                        <div class="unit-switch">
+                            <button id="cmBtn" class="active" onclick="setHUnit('cm')">CM</button>
+                            <button id="ftBtn" onclick="setHUnit('ft')">FT/IN</button>
+                        </div>
+                    </div>
+                    <div id="cmInputDiv"><input type="number" id="heightCM" value="170" min="50" max="250" oninput="calculate()"></div>
+                    <div id="ftInputDiv" style="display: none; gap: 10px;">
+                        <input type="number" id="heightFT" placeholder="Ft" min="1" max="8" oninput="calculate()">
+                        <input type="number" id="heightIN" placeholder="In" min="0" max="11" oninput="calculate()">
+                    </div>
+                </div>
+
+                <button class="btn-calc" onclick="calculate()" id="btnCalcText">Calculate Now</button>
+
+                <div class="meter-container">
+                    <div class="pointer" id="bmiPointer"><div class="pointer-arrow"></div></div>
+                    <div class="meter-bar"></div>
+                    <div class="human-scale">
+                        <div class="stage"><svg width="12" height="30" viewBox="0 0 24 24" fill="#ef4444"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm1 5h-2c-1.1 0-2 .9-2 2v5h2v7h2v-7h2V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">&lt; 16</div></div>
+                        <div class="stage"><svg width="14" height="35" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm1.2 5h-2.4c-1.1 0-2 .9-2 2v5h1.5v7h1.8v-7h1.5V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">16-17</div></div>
+                        <div class="stage"><svg width="16" height="40" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm1.5 5h-3c-1.1 0-2 .9-2 2v5h1.8v7h2.4v-7h1.8V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">17-18</div></div>
+                        <div class="stage"><svg width="18" height="45" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2 5h-4c-1.1 0-2 .9-2 2v5h2v7h4v-7h2V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">18-25</div></div>
+                        <div class="stage"><svg width="22" height="45" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm3 5h-6c-1.1 0-2 .9-2 2v5h2v7h4v-7h2V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">25-30</div></div>
+                        <div class="stage"><svg width="26" height="45" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm4 5h-8c-1.1 0-2 .9-2 2v5h2.5v7h5v-7h2.5V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">30-35</div></div>
+                        <div class="stage"><svg width="30" height="45" viewBox="0 0 24 24" fill="#ef4444"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm5 5H7c-1.1 0-2 .9-2 2v5h3.5v7h7v-7h3.5V9c0-1.1-.9-2-2-2z"/></svg><div class="range-text">35-40</div></div>
+                        <div class="stage"><svg width="34" height="45" viewBox="0 0 24 24" fill="#b91c1c"><path d="M12 2c1.4 0 2.5 1.1 2.5 2.5S13.4 7 12 7 9.5 5.9 9.5 4.5 10.6 2 12 2zM6 9c-1.1 0-2 .9-2 2v4h4v8h8v-8h4v-4c0-1.1-.9-2-2-2H6z"/></svg><div class="range-text">&gt; 40</div></div>
+                    </div>
+                </div>
+
+                <div class="result-grid">
+                    <div class="res-card"><small id="resCardBmiLbl">Your BMI</small><b id="bmiText">24.2</b></div>
+                    <div class="res-card"><small id="resCardCalLbl">Daily Calories</small><b id="calText">1971</b></div>
+                </div>
+
+                <div class="ai-tip-box">
+                    <h4 id="aiTipHeading">✨ AI Wellness Tip</h4>
+                    <p id="aiTip">Excellent! Keep maintaining your healthy lifestyle.</p>
+                </div>
+
+                <div class="bmi-chart">
+                    <div class="chart-row chart-header"><span id="thCat">Category</span><span id="thRange">BMI Range</span></div>
+                    <div class="chart-row" style="color:#ef4444;"><span id="tdUnder">Underweight</span><span>&lt; 18.5</span></div>
+                    <div class="chart-row" style="color:#22c55e;"><span id="tdNorm">Normal Weight</span><span>18.5 – 24.9</span></div>
+                    <div class="chart-row" style="color:#f59e0b;"><span id="tdOver">Overweight</span><span>25.0 – 29.9</span></div>
+                    <div class="chart-row" style="color:#b91c1c;"><span id="tdObese">Obesity</span><span>&gt; 30.0</span></div>
+                </div>
+
+                <div class="email-box" id="pdfEmailSection">
+                    <label id="lblEmailReport">Get Free Weekly Health Report</label>
+                    <input type="email" id="userEmail" placeholder="Enter your email address">
+                    <button class="btn-pdf" onclick="downloadPDF()" id="btnPdfText">Get Free PDF Report →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="article-container">
+        <div class="accordion-item">
+            <button class="accordion-header" id="accHead1" onclick="toggleAccordion(this)">Introduction: Health & Modern Life</button>
+            <div class="accordion-content" id="accContent1">
+                <p id="c1P1">In today's fast-paced, highly automated world, physical activity has drastically decreased worldwide...</p>
+                <p id="c1P2">To lead a long, vibrant life, understanding your body's baseline metrics is essential...</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="accHead2" onclick="toggleAccordion(this)">What Exactly is Body Mass Index (BMI)?</button>
+            <div class="accordion-content" id="accContent2">
+                <p id="c2P1">Body Mass Index (BMI) is an internationally recognized biometric measurement...</p>
+                <p id="c2P2">While BMI does not measure body fat percentage directly, it correlates robustly...</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="accHead3" onclick="toggleAccordion(this)">Why Tracking Your BMI is Crucial</button>
+            <div class="accordion-content" id="accContent3">
+                <p id="c3P1">Many individuals believe that looking fine in front of a mirror equates to optimal health...</p>
+                <ul>
+                    <li id="c3L1">Identifying Latent Risks</li>
+                    <li id="c3L2">Preventing Malpractice</li>
+                    <li id="c3L3">Benchmarks</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="accHead4" onclick="toggleAccordion(this)">BMI Classification Chart & Metrics</button>
+            <div class="accordion-content" id="accContent4">
+                <p id="c4P1">While global standards remain consistent for adult populations over 18...</p>
+                <table class="article-table">
+                    <thead>
+                        <tr>
+                            <th id="thTblRange">BMI Range</th>
+                            <th id="thTblClass">Classification</th>
+                            <th id="thTblRisk">Risk Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="color: #ef4444;">Below 18.5</td><td id="tdTblUnder">Underweight</td><td id="tdTblRiskUnder">High Deficiency Risk</td></tr>
+                        <tr><td style="color: #22c55e; font-weight: bold;">18.5 – 24.9</td><td id="tdTblNorm">Normal Weight</td><td id="tdTblRiskNorm">Minimal to None</td></tr>
+                        <tr><td style="color: #f59e0b;">25.0 – 29.9</td><td id="tdTblOver">Overweight</td><td id="tdTblRiskOver">Increased Risk</td></tr>
+                        <tr><td style="color: #b91c1c; font-weight: bold;">30.0+</td><td id="tdTblObese">Obesity</td><td id="tdTblRiskObese">Severe Medical Risk</td></tr>
+                    </tbody>
+                </table>
+                <div class="highlight-box" id="asianPhenotypeBox">
+                    <strong id="asianTitle">⚠️ Asian Phenotypes Node:</strong> <span id="asianDesc">The World Health Organization (WHO) notes...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" id="accHead5" onclick="toggleAccordion(this)">Understanding BMR & TDEE Dynamics</button>
+            <div class="accordion-content" id="accContent5">
+                <p id="c5P1">Basal Metabolic Rate (BMR) represents the minimal energy threshold...</p>
+                <p id="c5P2">Your Total Daily Energy Expenditure (TDEE) is derived...</p>
+                <ul>
+                    <li id="liDeficit">Caloric Deficit (Loss)</li>
+                    <li id="liSurplus">Caloric Surplus (Gain)</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 25px 10px 10px 10px; font-size: 11px; color: #64748b; background: white; margin-top: 25px; border-top: 1px solid #e2e8f0; width: 100%;">
+            <p id="footerCopyText">&copy; 2026 PureLife Health AI. All rights reserved.</p>
+            <div style="margin-top: 6px; display: flex; justify-content: center; gap: 12px;">
+                <a href="/privacy-policy" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftPrivacy">Privacy Policy</a> |
+<a href="/about">About</a> |
+<a href="/disclaimer">Disclaimer</a>
+                <a href="/terms" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftTerms">Terms</a> |
+                <a href="/contact" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftContact">Contact</a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<div id="cookieBanner" style="position: fixed; bottom: -200px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 460px; background: #1e293b; color: white; padding: 12px 18px; border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999; display: flex; flex-direction: column; gap: 8px; transition: bottom 0.4s ease-in-out;">
+    <p style="font-size: 11.5px; margin: 0; line-height: 1.5; text-align: left; color: #cbd5e1;" id="cookieText">We use cookies to improve your experience...</p>
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+        <button onclick="acceptCookies()" style="background: #22c55e; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer;" id="cookieBtnText">Accept</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

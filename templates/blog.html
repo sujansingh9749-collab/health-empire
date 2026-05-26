@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Blog | Fitness, Diet & Wellness Tips</title>
+    <meta name="description" content="Read the latest health, fitness, and diet articles on PureLife Health AI. Discover proven lifestyle and wellness guides.">
+    <meta name="keywords" content="health blog, fitness tips, diet plans, wellness articles, live healthy">
+    <meta name="robots" content="index, follow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Blog</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+}
+
+.navbar{
+background:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#2563eb;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.hero{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.card{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.card a{
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+color:#2563eb;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">PureLife Health AI</div>
+</div>
+
+<div class="container">
+
+<div class="hero">
+<h1>Health Blog</h1>
+<p>Health tips, BMI guides and AI generated articles</p>
+</div>
+
+{% for post in posts %}
+
+<div class="card">
+
+<a href="/blog/{{post.slug}}">
+{{post.title}}
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
