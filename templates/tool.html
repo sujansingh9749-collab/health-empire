@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<img src="{{ url_for('static', filename='images/health.png') }}" alt="BMI Health Calculator illustration">
 
 <nav class="navbar">
     <a href="/" class="nav-logo" id="navLogoText">PureLife Health AI</a>
@@ -199,6 +198,25 @@
             </div>
         </div>
 
+        <div class="featured-posts" style="margin-top: 35px; margin-bottom: 25px; padding: 10px;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 15px;">Latest Articles</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                {% if posts %}
+                    {% for post in posts %}
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">{{ post[0] }}</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">{{ post[2] }}</span></p>
+                            </div>
+                            <a href="/blog/{{ post[1] }}" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="font-size: 13px; color: #64748b;">No articles published yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
         <footer style="text-align: center; padding: 25px 10px 10px 10px; font-size: 11px; color: #64748b; background: white; margin-top: 25px; border-top: 1px solid #e2e8f0; width: 100%;">
             <p id="footerCopyText">&copy; 2026 PureLife Health AI. All rights reserved.</p>
             <div style="margin-top: 6px; display: flex; justify-content: center; gap: 12px;">
@@ -222,3 +240,42 @@
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+
+<section class="info-box">
+
+<h2>Why BMI Matters</h2>
+
+<p>
+Body Mass Index helps estimate whether your weight is within a healthy range for your height.
+While BMI is not perfect, it is still one of the most commonly used health indicators worldwide.
+</p>
+
+<p>
+Many people ignore small lifestyle changes until problems start appearing slowly —
+low energy, poor sleep, stress eating, or lack of physical activity.
+Tracking BMI regularly can help build awareness before health issues become serious.
+</p>
+
+</section>
+
+<section class="info-box">
+
+<h2>Healthy Daily Habits</h2>
+
+<ul>
+
+<li>Drink enough water throughout the day</li>
+
+<li>Try walking at least 20–30 minutes daily</li>
+
+<li>Avoid heavy late-night meals regularly</li>
+
+<li>Sleep consistently instead of randomly</li>
+
+<li>Reduce excessive sugary drinks and snacks</li>
+
+</ul>
+
+</section>
+
+<a href="/blog">Read Health Blogs</a>

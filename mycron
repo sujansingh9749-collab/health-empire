@@ -1,0 +1,1 @@
+0 9 * * * cd ~/health-empire && python blog_ai.py
