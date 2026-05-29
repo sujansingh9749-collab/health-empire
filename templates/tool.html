@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PureLife Health AI | Premium BMI Calculator & Health Tracker</title>
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<link class="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 <meta name="description" content="Smart BMI & Health Calculator with AI-powered BMI, calorie tracking, BMR and wellness insights.">
 <meta name="keywords" content="BMI calculator, calorie calculator, BMR calculator, health calculator, wellness tracker">
 <meta name="robots" content="index,follow">
@@ -217,12 +217,40 @@
             </div>
         </div>
 
-        <footer style="text-align: center; padding: 25px 10px 10px 10px; font-size: 11px; color: #64748b; background: white; margin-top: 25px; border-top: 1px solid #e2e8f0; width: 100%;">
+        <section class="info-box" style="margin-top: 35px; padding: 10px;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 10px;">Why BMI Matters</h2>
+            <p style="line-height: 1.6; color: #334155;">
+                Body Mass Index helps estimate whether your weight is within a healthy range for your height.
+                While BMI is not perfect, it is still one of the most commonly used health indicators worldwide.
+            </p>
+            <p style="line-height: 1.6; color: #334155; margin-top: 10px;">
+                Many people ignore small lifestyle changes until problems start appearing slowly —
+                low energy, poor sleep, stress eating, or lack of physical activity.
+                Tracking BMI regularly can help build awareness before health issues become serious.
+            </p>
+        </section>
+
+        <section class="info-box" style="margin-top: 35px; padding: 10px;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 10px;">Healthy Daily Habits</h2>
+            <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+                <li>Drink enough water throughout the day</li>
+                <li>Try walking at least 20–30 minutes daily</li>
+                <li>Avoid heavy late-night meals regularly</li>
+                <li>Sleep consistently instead of randomly</li>
+                <li>Reduce excessive sugary drinks and snacks</li>
+            </ul>
+        </section>
+
+        <div style="margin-top: 25px; padding: 10px;">
+            <a href="/blog" style="color: #2563eb; text-decoration: none; font-weight: 700; font-size: 15px;">Read Health Blogs &rarr;</a>
+        </div>
+
+        <footer style="text-align: center; padding: 25px 10px 10px 10px; font-size: 11px; color: #64748b; background: white; margin-top: 35px; border-top: 1px solid #e2e8f0; width: 100%;">
             <p id="footerCopyText">&copy; 2026 PureLife Health AI. All rights reserved.</p>
             <div style="margin-top: 6px; display: flex; justify-content: center; gap: 12px;">
                 <a href="/privacy-policy" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftPrivacy">Privacy Policy</a> |
-<a href="/about">About</a> |
-<a href="/disclaimer">Disclaimer</a>
+                <a href="/about" style="color: #2563eb; text-decoration: none; font-weight: 600;">About</a> |
+                <a href="/disclaimer" style="color: #2563eb; text-decoration: none; font-weight: 600;">Disclaimer</a> |
                 <a href="/terms" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftTerms">Terms</a> |
                 <a href="/contact" style="color: #2563eb; text-decoration: none; font-weight: 600;" id="ftContact">Contact</a>
             </div>
@@ -240,42 +268,3 @@
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
-
-<section class="info-box">
-
-<h2>Why BMI Matters</h2>
-
-<p>
-Body Mass Index helps estimate whether your weight is within a healthy range for your height.
-While BMI is not perfect, it is still one of the most commonly used health indicators worldwide.
-</p>
-
-<p>
-Many people ignore small lifestyle changes until problems start appearing slowly —
-low energy, poor sleep, stress eating, or lack of physical activity.
-Tracking BMI regularly can help build awareness before health issues become serious.
-</p>
-
-</section>
-
-<section class="info-box">
-
-<h2>Healthy Daily Habits</h2>
-
-<ul>
-
-<li>Drink enough water throughout the day</li>
-
-<li>Try walking at least 20–30 minutes daily</li>
-
-<li>Avoid heavy late-night meals regularly</li>
-
-<li>Sleep consistently instead of randomly</li>
-
-<li>Reduce excessive sugary drinks and snacks</li>
-
-</ul>
-
-</section>
-
-<a href="/blog">Read Health Blogs</a>
