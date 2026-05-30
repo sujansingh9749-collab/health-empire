@@ -489,3 +489,88 @@
     }
 
     calculate();
+
+// Premium PDF Generation Client-Side Function
+function downloadPDF() {
+    const emailInput = document.getElementById('userEmail');
+    if (emailInput && !emailInput.checkValidity()) {
+        alert('Please enter a valid email address first.');
+        return;
+    }
+
+    // বাটনে লোডিং টেক্সট দেখানো
+    const pdfBtn = document.getElementById('btnPdfText');
+    const originalText = pdfBtn.innerText;
+    pdfBtn.innerText = 'Generating PDF... ⏳';
+    pdfBtn.disabled = true;
+
+    // পিডিএফ জেনারেট করার জন্য স্ক্রিপ্ট লোড করা (যদি আগে থেকে না থাকে)
+    if (typeof html2pdf === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        script.onload = () => executePDFGeneration(pdfBtn, originalText);
+        document.head.appendChild(script);
+    } else {
+        executePDFGeneration(pdfBtn, originalText);
+    }
+}
+
+function executePDFGeneration(button, originalText) {
+    // পিডিএফে যে কন্টেন্টটুকু সুন্দর করে দেখাবে তা সাজানো
+    const bmi = document.getElementById('bmiText').innerText;
+    const calories = document.getElementById('calText').innerText;
+    const aiTip = document.getElementById('aiTip').innerText;
+    
+    const element = document.createElement('div');
+    element.innerHTML = `
+        <div style="padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b;">
+            <h1 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px; margin-bottom: 20px;">PureLife Health AI Report</h1>
+            <p style="font-size: 14px; color: #64748b;">Generated on: ${new Date().toLocaleDateString()}</p>
+            
+            <div style="margin-top: 30px; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                <h3 style="margin-top: 0; color: #0f172a;">📊 Your Health Metrics</h3>
+                <p style="font-size: 16px;"><strong>Body Mass Index (BMI):</strong> <span style="color: #2563eb; font-weight: bold; font-size: 18px;">${bmi}</span></p>
+                <p style="font-size: 16px;"><strong>Daily Calorie Requirement:</strong> <span style="color: #2563eb; font-weight: bold; font-size: 18px;">${calories} kcal</span></p>
+            </div>
+            
+            <div style="margin-top: 20px; background: #eff6ff; padding: 20px; border-radius: 12px; border: 1px solid #bfdbfe;">
+                <h3 style="margin-top: 0; color: #1e40af;">✨ AI Wellness Tip</h3>
+                <p style="font-size: 15px; color: #1e3a8a; line-height: 1.6;">${aiTip}</p>
+            </div>
+            
+            <div style="margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <h4 style="color: #0f172a; margin-bottom: 10px;">📋 Healthy Habits Recommendation:</h4>
+                <ul style="line-height: 1.8; color: #475569;">
+                    <li>Drink at least 3-4 liters of water daily.</li>
+                    <li>Engage in 20-30 minutes of physical activity or walking.</li>
+                    <li>Prioritize 7-8 hours of consistent, deep sleep.</li>
+                    <li>Reduce processed sugars and high-calorie snacks.</li>
+                </ul>
+            </div>
+            
+            <footer style="margin-top: 60px; text-align: center; font-size: 12px; color: #94a3b8;">
+                <p>© 2026 PureLife Health AI. All rights reserved.</p>
+                <p style="color: #2563eb;">health-empire.vercel.app</p>
+            </footer>
+        </div>
+    `;
+
+    const opt = {
+        margin:       10,
+        filename:     'PureLife_Health_Report.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // পিডিএফ সেভ করা
+    html2pdf().set(opt).from(element).save().then(() => {
+        button.innerText = originalText;
+        button.disabled = false;
+    }).catch(err => {
+        console.error(err);
+        button.innerText = originalText;
+        button.disabled = false;
+        alert('Something went wrong while generating the PDF.');
+    });
+}
