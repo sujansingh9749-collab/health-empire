@@ -263,3 +263,38 @@ body.dark-mode .legal-card h2 {
 body.dark-mode .legal-card p, body.dark-mode .legal-card li {
     color: #cbd5e1;
 }
+
+/* ইনপুট বক্স কেঁপে ওঠার অ্যানিমেশন */
+.shake-error {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+
+/* মোবাইল ইন্টারফেসে ওভাররাইড ফিক্স */
+.accordion-content {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+/* ফ্রেশ এবং ক্লিন অ্যাকোর্ডিয়ন সিএসএস */
+.accordion-content {
+    display: none; /* ডিফল্টভাবে সব বন্ধ থাকবে */
+    overflow: hidden;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+}
+
+/* যখন অ্যাকোর্ডিয়নটি একটিভ বা ওপেন হবে */
+.accordion-content.is-open {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
