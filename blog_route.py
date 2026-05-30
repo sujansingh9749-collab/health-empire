@@ -48,34 +48,34 @@ def dynamic_sitemap():
     sitemap_xml = f'''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://yourdomain.com/</loc>
+        <loc>https://health-empire.vercel.app/</loc>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/blog</loc>
+        <loc>https://health-empire.vercel.app/blog</loc>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/privacy-policy</loc>
+        <loc>https://health-empire.vercel.app/privacy-policy</loc>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/about</loc>
+        <loc>https://health-empire.vercel.app/about</loc>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/contact</loc>
+        <loc>https://health-empire.vercel.app/contact</loc>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/terms</loc>
+        <loc>https://health-empire.vercel.app/terms</loc>
         <priority>0.5</priority>
     </url>'''
     
     for post in posts:
         sitemap_xml += f'''
     <url>
-        <loc>https://yourdomain.com/blog/{post['slug']}</loc>
+        <loc>https://health-empire.vercel.app/blog/{post['slug']}</loc>
         <priority>0.7</priority>
     </url>'''
         

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, Response, send_from_directory
+from flask import Flask, render_template, request, jsonify
 import sqlite3
 import os
 
@@ -61,21 +61,6 @@ def contact():
         return render_template("contact.html")
     except:
         return "<h1>Contact Us</h1><p>Email: support@purelifehealthai.com</p><a href="/">Back Home</a>"
-
-@app.route("/robots.txt")
-def robots():
-    return send_from_directory("static", "robots.txt")
-
-@app.route("/sitemap.xml")
-def sitemap():
-    sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://health-empire.vercel.app/</loc></url>
-<url><loc>https://health-empire.vercel.app/blog</loc></url>
-<url><loc>https://health-empire.vercel.app/about</loc></url>
-<url><loc>https://health-empire.vercel.app/contact</loc></url>
-</urlset>"""
-    return Response(sitemap_xml, mimetype="application/xml")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

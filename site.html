@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="/static/css/style.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PureLife Health AI | Premium BMI Calculator & Health Tracker</title>
-<link class="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<link class="icon" type="image/png" href="/static/images/favicon.png">
 <meta name="description" content="Smart BMI & Health Calculator with AI-powered BMI, calorie tracking, BMR and wellness insights.">
 <meta name="keywords" content="BMI calculator, calorie calculator, BMR calculator, health calculator, wellness tracker">
 <meta name="robots" content="index,follow">
@@ -201,19 +201,65 @@
         <div class="featured-posts" style="margin-top: 35px; margin-bottom: 25px; padding: 10px;">
             <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 15px;">Latest Articles</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-                {% if posts %}
-                    {% for post in posts %}
+                
+                    
                         <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
-                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">{{ post[0] }}</h3>
-                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">{{ post[2] }}</span></p>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">Insulin Sensitivity and Metabolic Flexibility: The Hidden Drivers Behind Stubborn Fat</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Health</span></p>
                             </div>
-                            <a href="/blog/{{ post[1] }}" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                            <a href="/blog/insulin-sensitivity-metabolic-flexibility-stubborn-fat" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
                         </div>
-                    {% endfor %}
-                {% else %}
-                    <p style="font-size: 13px; color: #64748b;">No articles published yet.</p>
-                {% endif %}
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">Clean Bulk vs. Dirty Bulk: Scientific Caloric Surpluses for Lean Muscle Architecture</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Fitness</span></p>
+                            </div>
+                            <a href="/blog/clean-bulk-vs-dirty-bulk-scientific-surplus" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">The Asian Phenotype Paradox: Why Standard BMI Thresholds Misdiagnose Metabolic Risks</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Health</span></p>
+                            </div>
+                            <a href="/blog/asian-phenotype-paradox-bmi-thresholds" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">Beyond the Scale: Why BMI is Incomplete Without Waist-to-Height Ratio (WHtR)</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Fitness</span></p>
+                            </div>
+                            <a href="/blog/beyond-scale-why-bmi-is-incomplete" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">The Physics of Caloric Deficit: How to Calculate Your True Weight Loss Baseline</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Diet</span></p>
+                            </div>
+                            <a href="/blog/physics-of-caloric-deficit-weight-loss-baseline" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">Simple Weight Loss Diet Plan That Actually Works</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Fitness</span></p>
+                            </div>
+                            <a href="/blog/simple-weight-loss-diet-plan-that-actually-works" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                        <div class="post-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; line-height: 1.4;">5 Simple Habits for a Healthier Life</h3>
+                                <p style="font-size: 12px; color: #64748b; margin: 0 0 12px 0; font-weight: 500;">Category: <span style="color: #2563eb;">Lifestyle</span></p>
+                            </div>
+                            <a href="/blog/simple-habits-for-healthier-life" style="color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center;">Read More &rarr;</a>
+                        </div>
+                    
+                
             </div>
         </div>
 
@@ -265,6 +311,6 @@
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="/static/js/script.js"></script>
 </body>
 </html>
